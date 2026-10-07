@@ -1,60 +1,227 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>[Tu Nombre] | Portafolio</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.6; }
-    section { max-width: 900px; margin: 0 auto; padding: 4rem 1.5rem; }
-    h1 { font-size: 2.8rem; }
-    h2 { margin-bottom: 1.5rem; color: #38bdf8; }
-    .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
-    .hero p { font-size: 1.2rem; color: #94a3b8; margin-top: .5rem; }
-    .btn { display: inline-block; margin-top: 1.5rem; padding: .7rem 1.4rem; background: #38bdf8;
-           color: #0f172a; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform .2s; }
-    .btn:hover { transform: translateY(-3px); }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-    .card { background: #1e293b; border-radius: 12px; overflow: hidden; transition: transform .3s, box-shadow .3s; }
-    .card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(56,189,248,.2); }
-    .card img { width: 100%; height: 160px; object-fit: cover; background: #334155; }
-    .card div { padding: 1rem; }
-    .card a { color: #38bdf8; }
-    .fade { animation: fadeUp 1s ease both; }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sebastian Aldave | Autonomous Robotics &amp; Intelligent Systems</title>
+<meta name="description" content="Engineering student at Mines Paris–PSL and Sorbonne Université (AI2D). Autonomous robotics, perception, decision-making, multi-agent systems. Looking for a 5-month final-year internship starting late March 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#eef1f4; --ink:#14202b; --muted:#506070; --line:#c5cdd6;
+  --blue:#2447d6; --teal:#0e8a7d; --white:#fff;
+  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --body:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.65;font-size:1.02rem;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:48px 48px;background-attachment:fixed;background-blend-mode:soft-light}
+a{color:var(--blue)}
+a:focus-visible,button:focus-visible,.proj:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 1.5rem}
+nav{position:sticky;top:0;z-index:5;background:rgba(238,241,244,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:1.5rem;align-items:center;padding-top:.8rem;padding-bottom:.8rem;flex-wrap:wrap}
+nav strong{font-family:var(--display);margin-right:auto}
+nav a{text-decoration:none;color:var(--ink);font-size:.95rem}
+nav a:hover{color:var(--blue)}
+h1,h2,h3{font-family:var(--display);line-height:1.15}
+h1{font-size:clamp(2.6rem,7vw,4.6rem);letter-spacing:-.02em}
+h2{font-size:1.9rem;margin-bottom:2rem}
+h3{font-size:1.2rem}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;min-height:82vh;padding:3rem 0}
+.hero .role{font-family:var(--display);font-size:1.3rem;color:var(--blue);margin:.6rem 0 1.2rem}
+.hero p{max-width:34rem;color:var(--muted)}
+.hero p strong{color:var(--ink);font-weight:500}
+.actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem}
+.btn{display:inline-block;padding:.7rem 1.3rem;border-radius:6px;text-decoration:none;font-weight:500;border:2px solid var(--blue);transition:background .2s,color .2s}
+.btn.main{background:var(--blue);color:var(--white)}
+.btn.main:hover{background:#1a37a8}
+.btn.alt{color:var(--blue)}
+.btn.alt:hover{background:var(--blue);color:var(--white)}
+.sim{position:relative;aspect-ratio:1/1;border:1px solid var(--ink);background:var(--white);border-radius:4px}
+.sim canvas{width:100%;height:100%;display:block}
+.sim span{position:absolute;left:.7rem;bottom:.5rem;font-size:.8rem;color:var(--muted)}
+
+/* Sections */
+section{padding:3.5rem 0;border-top:1px solid var(--ink)}
+
+/* Project previews */
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+.proj{display:block;color:inherit;text-decoration:none}
+.thumb{position:relative;aspect-ratio:16/10;overflow:hidden;border:1px solid var(--ink);border-radius:4px;
+  background:linear-gradient(135deg,#2447d6 0%,#0e8a7d 100%)}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.thumb .over{position:absolute;inset:0;background:rgba(10,18,28,.86);color:#eef1f4;padding:1.1rem 1.2rem;
+  display:flex;flex-direction:column;justify-content:center;gap:.8rem;opacity:0;transition:opacity .25s;overflow:auto}
+.proj:hover .over,.proj:focus .over,.proj:focus-within .over{opacity:1}
+.over p{font-size:.95rem;line-height:1.55}
+.over ul{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none}
+.over li{font-size:.78rem;border:1px solid #6fd6c9;color:#6fd6c9;padding:.05rem .55rem;border-radius:99px}
+.cap{padding-top:.7rem}
+.proj:hover .cap h3,.proj:focus-visible .cap h3{color:var(--blue);text-decoration:underline}
+@media (hover:none){.thumb .over{opacity:1;background:rgba(10,18,28,.8)}}
+
+/* About */
+.intro{display:flex;gap:1.3rem;align-items:flex-start}
+.photo{width:116px;height:116px;border-radius:50%;object-fit:cover;border:2px solid var(--ink);flex:none}
+.about{max-width:40rem}
+footer{border-top:1px solid var(--ink);padding:2rem 0 3rem;color:var(--muted);font-size:.9rem}
+
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .projects{grid-template-columns:1fr}
+  .intro{flex-direction:column}
+}
+</style>
 </head>
 <body>
-  <section class="hero fade">
-    <h1>Hola, soy [Tu Nombre]</h1>
-    <p>[Tu profesión o especialidad]</p>
-    <a class="btn" href="#proyectos">Ver proyectos</a>
-  </section>
 
-  <section id="sobre-mi">
-    <h2>Sobre mí</h2>
-    <p>[Dos o tres frases sobre ti, tu experiencia y lo que buscas.]</p>
-  </section>
+<nav>
+  <div class="wrap">
+    <strong>Sebastian Aldave</strong>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-  <section id="proyectos">
-    <h2>Proyectos</h2>
-    <div class="grid">
-      <div class="card">
-        <img src="" alt="Captura del proyecto 1">
-        <div>
-          <h3>Proyecto 1</h3>
-          <p>Descripción breve de qué hace y qué tecnologías usaste.</p>
-          <a href="https://github.com/tu-usuario/proyecto1">Ver en GitHub →</a>
-        </div>
+<main class="wrap">
+
+  <header class="hero">
+    <div>
+      <h1>Sebastian Aldave</h1>
+      <p class="role">Engineer in autonomous robotics and intelligent systems</p>
+      <div class="intro">
+        <img class="photo" src="img/photo.jpg" alt="Sebastian Aldave" onerror="this.remove()">
+        <p>Engineering student at Mines Paris–PSL and in the AI2D Master's at Sorbonne Université. I design systems that perceive, decide and act, from the mechanics and electronics to the algorithm. <strong>I am looking for a 5-month final-year internship starting late March 2027</strong>, in applied R&amp;D.</p>
       </div>
-      <!-- Copia el bloque "card" para agregar más proyectos -->
+      <div class="actions">
+        <a class="btn main" href="#projects">See my projects</a>
+        <a class="btn alt" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="sim" aria-hidden="true">
+      <canvas id="sim"></canvas>
+      <span>Autonomous agents: move your mouse, they adapt.</span>
+    </div>
+  </header>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+
+      <a class="proj" href="https://github.com/YOUR-GITHUB/schneider-pcba-robotic-cell" target="_blank" rel="noopener">
+        <div class="thumb">
+          <img src="img/schneider.jpg" alt="Robotic PCBA test cell" onerror="this.remove()">
+          <div class="over">
+            <p>Integration of a robotic cell (Lexium cobot, Keyence vision) to insert PCBAs into test benches, orchestrated with EcoStruxure Automation Expert and a digital twin. Cycle time ≤ 16 s, estimated gain of 9,000 h/year, ROI of 2.4 years.</p>
+            <ul><li>Cobot</li><li>Machine vision</li><li>Digital twin</li><li>CAD</li></ul>
+          </div>
+        </div>
+        <div class="cap"><h3>Robotic cell for PCBA testing</h3></div>
+      </a>
+
+      <a class="proj" href="https://github.com/YOUR-GITHUB/smart-contact-lens-biosensing" target="_blank" rel="noopener">
+        <div class="thumb">
+          <img src="img/lens.jpg" alt="Embedded platform of the smart contact lens" onerror="this.remove()">
+          <div class="over">
+            <p>Embedded platform for a contact lens that senses tear biomarkers: component selection, electrochemical signal acquisition, NFC communication, thin-film mask design, and Python processing of experimental data.</p>
+            <ul><li>Embedded systems</li><li>NFC</li><li>Python</li><li>Thin-film</li></ul>
+          </div>
+        </div>
+        <div class="cap"><h3>Contact lens for tear biosensing</h3></div>
+      </a>
+
+      <a class="proj" href="https://github.com/YOUR-GITHUB/sensorless-induction-motor-control" target="_blank" rel="noopener">
+        <div class="thumb">
+          <img src="img/motor.png" alt="Simulation results of the sensorless motor control" onerror="this.remove()">
+          <div class="over">
+            <p>Nonlinear flux-speed control laws and a cascaded Kalman filter observer to estimate speed without a sensor. Stability analysis and simulation under load disturbances and parameter uncertainty.</p>
+            <ul><li>Nonlinear control</li><li>Kalman filter</li><li>MATLAB/Simulink</li></ul>
+          </div>
+        </div>
+        <div class="cap"><h3>Robust sensorless induction motor control</h3></div>
+      </a>
+
+      <a class="proj" href="https://github.com/YOUR-GITHUB/mobile-manipulator-waste-collection" target="_blank" rel="noopener">
+        <div class="thumb">
+          <img src="img/arm.jpg" alt="Mobile manipulator arm" onerror="this.remove()">
+          <div class="over">
+            <p>2-DOF arm mounted on a mobile platform to collect waste. PID controller in C++ coupled with forward and inverse kinematics in MATLAB, validated under external disturbances.</p>
+            <ul><li>Mobile robotics</li><li>PID</li><li>C++</li><li>Kinematics</li></ul>
+          </div>
+        </div>
+        <div class="cap"><h3>Mobile manipulator for waste collection</h3></div>
+      </a>
+
+      <a class="proj" href="https://github.com/YOUR-GITHUB/gesture-speech-glove" target="_blank" rel="noopener">
+        <div class="thumb">
+          <img src="img/glove.jpg" alt="Gesture-to-speech glove" onerror="this.remove()">
+          <div class="over">
+            <p>Glove with inertial and flex sensors, a TensorFlow neural network for real-time gesture recognition, haptic and visual feedback, and an IoT link to a web interface for transcription and speech synthesis.</p>
+            <ul><li>TensorFlow</li><li>IoT</li><li>Sensors</li><li>ESP32</li></ul>
+          </div>
+        </div>
+        <div class="cap"><h3>Gesture-to-speech communication glove</h3></div>
+      </a>
+
     </div>
   </section>
 
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p><a class="btn" href="mailto:tucorreo@ejemplo.com">Escríbeme</a></p>
+  <section id="contact">
+    <h2>Let's talk about your project</h2>
+    <p class="about">I am looking for a multidisciplinary team working on robotics, AI and physical systems, where I can start from a real need, then design, integrate and validate a solution on a real system.</p>
+    <div class="actions">
+      <a class="btn main" href="mailto:sebastian.aldavet@gmail.com">Send an email</a>
+      <a class="btn alt" href="https://www.linkedin.com/in/YOUR-LINKEDIN">LinkedIn</a>
+      <a class="btn alt" href="https://github.com/YOUR-GITHUB">GitHub</a>
+    </div>
   </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Sebastian Aldave</div>
+</footer>
+
+<script>
+(function(){
+  var c=document.getElementById('sim'),x=c.getContext('2d');
+  var W,H,dpr=Math.min(window.devicePixelRatio||1,2),mouse=null,N=14,A=[];
+  var still=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){var r=c.getBoundingClientRect();W=r.width;H=r.height;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0)}
+  size();window.addEventListener('resize',size);
+  for(var i=0;i<N;i++)A.push({x:Math.random()*W,y:Math.random()*H,a:Math.random()*6.28});
+  c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();mouse={x:e.clientX-r.left,y:e.clientY-r.top}});
+  c.addEventListener('pointerleave',function(){mouse=null});
+  function step(){
+    x.clearRect(0,0,W,H);
+    x.strokeStyle='#c5cdd6';x.lineWidth=1;
+    for(var g=0;g<=W;g+=W/8){x.beginPath();x.moveTo(g,0);x.lineTo(g,H);x.stroke()}
+    for(g=0;g<=H;g+=H/8){x.beginPath();x.moveTo(0,g);x.lineTo(W,g);x.stroke()}
+    A.forEach(function(p,i){
+      var t=p.a,dx=0,dy=0;
+      A.forEach(function(q,j){if(i!==j){var ax=p.x-q.x,ay=p.y-q.y,d=Math.hypot(ax,ay);
+        if(d<60){dx+=ax/d;dy+=ay/d;}
+        if(d<110){x.strokeStyle='rgba(14,138,125,'+(1-d/110)*.5+')';x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}});
+      if(mouse){var mx=mouse.x-p.x,my=mouse.y-p.y,md=Math.hypot(mx,my);
+        if(md>1&&md<220){dx+=mx/md*.8;dy+=my/md*.8}}
+      if(dx||dy){var want=Math.atan2(dy,dx),diff=Math.atan2(Math.sin(want-t),Math.cos(want-t));t+=diff*.08}
+      else t+=(Math.random()-.5)*.2;
+      p.a=t;
+      if(!still){p.x+=Math.cos(t)*1.1;p.y+=Math.sin(t)*1.1}
+      if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+      x.save();x.translate(p.x,p.y);x.rotate(t);x.fillStyle='#2447d6';
+      x.beginPath();x.moveTo(9,0);x.lineTo(-6,5);x.lineTo(-6,-5);x.closePath();x.fill();x.restore();
+    });
+    if(!still)requestAnimationFrame(step);
+  }
+  step();
+})();
+</script>
 </body>
 </html>
