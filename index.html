@@ -125,7 +125,40 @@ footer{border-top:1px solid var(--ink);padding:2rem 0 3rem;color:var(--muted);fo
     <h2>Projects</h2>
     <div class="projects">
 
-      <a class="proj" href="https://github.com/YOUR-GITHUB/vision-controlled-3dof-manipulator" target="_blank" rel="noopener">
+      <a class="proj" href="projects/sensorless-induction-motor-control.html">
+        <div class="thumb">
+          <img src="img/motor.png" alt="Simulation results of the sensorless motor control" onerror="this.remove()">
+          <div class="over">
+            <p>Nonlinear flux-speed control laws and a cascaded Kalman filter observer to estimate speed without a sensor. Stability analysis and simulation under load disturbances and parameter uncertainty.</p>
+            <ul><li>Nonlinear control</li><li>Kalman filter</li><li>MATLAB/Simulink</li></ul>
+          </div>
+        </div>
+        <div class="cap"><h3>Robust sensorless induction motor control</h3></div>
+      </a>
+
+      <a class="proj" href="projects/mobile-manipulator-waste-collection.html">
+        <div class="thumb">
+          <img src="img/arm.jpg" alt="Mobile manipulator arm" onerror="this.remove()">
+          <div class="over">
+            <p>2-DOF arm mounted on a mobile platform to collect waste. PID controller in C++ coupled with forward and inverse kinematics in MATLAB, validated under external disturbances.</p>
+            <ul><li>Mobile robotics</li><li>PID</li><li>C++</li><li>Kinematics</li></ul>
+          </div>
+        </div>
+        <div class="cap"><h3>Mobile manipulator for waste collection</h3></div>
+      </a>
+
+      <a class="proj" href="projects/gesture-speech-glove.html">
+        <div class="thumb">
+          <img src="img/glove.jpg" alt="Gesture-to-speech glove" onerror="this.remove()">
+          <div class="over">
+            <p>Glove with inertial and flex sensors, a TensorFlow neural network for real-time gesture recognition, haptic and visual feedback, and an IoT link to a web interface for transcription and speech synthesis.</p>
+            <ul><li>TensorFlow</li><li>IoT</li><li>Sensors</li><li>ESP32</li></ul>
+          </div>
+        </div>
+        <div class="cap"><h3>Gesture-to-speech communication glove</h3></div>
+      </a>
+
+      <a class="proj" href="projects/vision-controlled-3dof-manipulator.html">
         <div class="thumb">
           <img src="img/manipulator.jpg" alt="3-DOF robotic manipulator controlled by computer vision" onerror="this.remove()">
           <div class="over">
@@ -138,38 +171,8 @@ footer{border-top:1px solid var(--ink);padding:2rem 0 3rem;color:var(--muted);fo
 
 
 
-      <a class="proj" href="https://github.com/YOUR-GITHUB/sensorless-induction-motor-control" target="_blank" rel="noopener">
-        <div class="thumb">
-          <img src="img/motor.png" alt="Simulation results of the sensorless motor control" onerror="this.remove()">
-          <div class="over">
-            <p>Nonlinear flux-speed control laws and a cascaded Kalman filter observer to estimate speed without a sensor. Stability analysis and simulation under load disturbances and parameter uncertainty.</p>
-            <ul><li>Nonlinear control</li><li>Kalman filter</li><li>MATLAB/Simulink</li></ul>
-          </div>
-        </div>
-        <div class="cap"><h3>Robust sensorless induction motor control</h3></div>
-      </a>
 
-      <a class="proj" href="https://github.com/YOUR-GITHUB/mobile-manipulator-waste-collection" target="_blank" rel="noopener">
-        <div class="thumb">
-          <img src="img/arm.jpg" alt="Mobile manipulator arm" onerror="this.remove()">
-          <div class="over">
-            <p>2-DOF arm mounted on a mobile platform to collect waste. PID controller in C++ coupled with forward and inverse kinematics in MATLAB, validated under external disturbances.</p>
-            <ul><li>Mobile robotics</li><li>PID</li><li>C++</li><li>Kinematics</li></ul>
-          </div>
-        </div>
-        <div class="cap"><h3>Mobile manipulator for waste collection</h3></div>
-      </a>
 
-      <a class="proj" href="https://github.com/YOUR-GITHUB/gesture-speech-glove" target="_blank" rel="noopener">
-        <div class="thumb">
-          <img src="img/glove.jpg" alt="Gesture-to-speech glove" onerror="this.remove()">
-          <div class="over">
-            <p>Glove with inertial and flex sensors, a TensorFlow neural network for real-time gesture recognition, haptic and visual feedback, and an IoT link to a web interface for transcription and speech synthesis.</p>
-            <ul><li>TensorFlow</li><li>IoT</li><li>Sensors</li><li>ESP32</li></ul>
-          </div>
-        </div>
-        <div class="cap"><h3>Gesture-to-speech communication glove</h3></div>
-      </a>
 
     </div>
   </section>
