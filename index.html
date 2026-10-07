@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[Tu Nombre] | Portafolio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.6; }
+    section { max-width: 900px; margin: 0 auto; padding: 4rem 1.5rem; }
+    h1 { font-size: 2.8rem; }
+    h2 { margin-bottom: 1.5rem; color: #38bdf8; }
+    .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
+    .hero p { font-size: 1.2rem; color: #94a3b8; margin-top: .5rem; }
+    .btn { display: inline-block; margin-top: 1.5rem; padding: .7rem 1.4rem; background: #38bdf8;
+           color: #0f172a; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform .2s; }
+    .btn:hover { transform: translateY(-3px); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .card { background: #1e293b; border-radius: 12px; overflow: hidden; transition: transform .3s, box-shadow .3s; }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(56,189,248,.2); }
+    .card img { width: 100%; height: 160px; object-fit: cover; background: #334155; }
+    .card div { padding: 1rem; }
+    .card a { color: #38bdf8; }
+    .fade { animation: fadeUp 1s ease both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+  </style>
+</head>
+<body>
+  <section class="hero fade">
+    <h1>Hola, soy [Tu Nombre]</h1>
+    <p>[Tu profesión o especialidad]</p>
+    <a class="btn" href="#proyectos">Ver proyectos</a>
+  </section>
+
+  <section id="sobre-mi">
+    <h2>Sobre mí</h2>
+    <p>[Dos o tres frases sobre ti, tu experiencia y lo que buscas.]</p>
+  </section>
+
+  <section id="proyectos">
+    <h2>Proyectos</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="" alt="Captura del proyecto 1">
+        <div>
+          <h3>Proyecto 1</h3>
+          <p>Descripción breve de qué hace y qué tecnologías usaste.</p>
+          <a href="https://github.com/tu-usuario/proyecto1">Ver en GitHub →</a>
+        </div>
+      </div>
+      <!-- Copia el bloque "card" para agregar más proyectos -->
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p><a class="btn" href="mailto:tucorreo@ejemplo.com">Escríbeme</a></p>
+  </section>
+</body>
+</html>
