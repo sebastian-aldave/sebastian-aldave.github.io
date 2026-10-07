@@ -1,46 +1,216 @@
-<header class="hero">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sebastian Aldave | Autonomous Robotics &amp; Intelligent Systems</title>
+<meta name="description" content="Engineering student at Mines Paris–PSL and Sorbonne Université (AI2D). Autonomous robotics, perception, decision-making, multi-agent systems. Looking for a 5-month final-year internship starting late March 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<style>
+:root{
+  --paper:#eef1f4; --ink:#14202b; --muted:#506070; --line:#c5cdd6;
+  --blue:#2447d6; --blue-hover:#1a37a8; --teal:#0e8a7d; --teal-rgb:14,138,125;
+  --surface:#ffffff; --btn-text:#ffffff; --nav-bg:rgba(238,241,244,.92);
+  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --body:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]){
+  --paper:#0f1720; --ink:#e6ebf0; --muted:#97a6b6; --line:#243140;
+  --blue:#7b9bff; --blue-hover:#a1b6ff; --teal:#3ec9b8; --teal-rgb:62,201,184;
+  --surface:#16212c; --btn-text:#0f1720; --nav-bg:rgba(15,23,32,.92);
+  color-scheme:dark;
+}
+}
+:root[data-theme="dark"]{
+  --paper:#0f1720; --ink:#e6ebf0; --muted:#97a6b6; --line:#243140;
+  --blue:#7b9bff; --blue-hover:#a1b6ff; --teal:#3ec9b8; --teal-rgb:62,201,184;
+  --surface:#16212c; --btn-text:#0f1720; --nav-bg:rgba(15,23,32,.92);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.65;font-size:1.02rem;}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:var(--line);opacity:.75;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 360 360%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cg transform=%22translate%2860 60%29 rotate%2810%29%22%3E%3Ccircle r=%2217%22/%3E%3Ccircle r=%226%22/%3E%3Ccircle r=%2222%22 stroke-width=%225%22 stroke-dasharray=%226.9 6.9%22/%3E%3C/g%3E%3Cg transform=%22translate%28190 38%29 rotate%28-4%29%22%3E%3Cpath d=%22M-40 0H-22L-17 -8L-9 8L-1 -8L7 8L15 -8L20 0H40%22/%3E%3C/g%3E%3Cg transform=%22translate%28300 70%29%22%3E%3Ccircle r=%2218%22/%3E%3Cpath d=%22M-7 6V-6L0 2L7 -6V6M18 0H32M-18 0H-32%22/%3E%3C/g%3E%3Cg transform=%22translate%28125 115%29 rotate%2815%29%22%3E%3Cpath d=%22M12 0L6 10.4L-6 10.4L-12 0L-6 -10.4L6 -10.4Z%22/%3E%3Ccircle r=%225%22/%3E%3C/g%3E%3Cg transform=%22translate%28240 120%29%22%3E%3Cpath d=%22M0 -14V0M-12 0H12M-8 6H8M-4 12H4%22/%3E%3C/g%3E%3Cg transform=%22translate%2855 205%29%22%3E%3Cpath d=%22M-14 20H14M0 20V4%22/%3E%3Ccircle r=%224%22 cy=%220%22/%3E%3Cpath d=%22M0 0L28 -22%22/%3E%3Ccircle cx=%2228%22 cy=%22-22%22 r=%224%22/%3E%3Cpath d=%22M28 -22L52 -4M52 -4L60 -8M52 -4L60 2%22/%3E%3C/g%3E%3Cg transform=%22translate%28180 185%29 rotate%28-8%29%22%3E%3Cpath d=%22M-30 0H-5M-5 -12V12M5 -12V12M5 0H30%22/%3E%3C/g%3E%3Cg transform=%22translate%28292 195%29%22%3E%3Cpath d=%22M-18 -22L22 0L-18 22ZM-34 -10H-18M-34 10H-18M22 0H38M-14 -10H-8M-11 -13V-7M-14 10H-8%22/%3E%3C/g%3E%3Cg transform=%22translate%2850 300%29%22%3E%3Cpath d=%22M-18 -6A26 26 0 0 1 18 -6M-11 1A15 15 0 0 1 11 1M-5 8A6 6 0 0 1 5 8%22/%3E%3Ccircle cy=%2215%22 r=%221.8%22 fill=%22black%22/%3E%3C/g%3E%3Cg transform=%22translate%28170 300%29 rotate%284%29%22%3E%3Cpath d=%22M-36 0H-24a6 6 0 0 1 12 0a6 6 0 0 1 12 0a6 6 0 0 1 12 0a6 6 0 0 1 12 0H36%22/%3E%3C/g%3E%3Cg transform=%22translate%28300 305%29%22%3E%3Cpath d=%22M-30 10H-10L5 -5H30%22/%3E%3Ccircle cx=%22-30%22 cy=%2210%22 r=%223%22/%3E%3Ccircle cx=%2230%22 cy=%22-5%22 r=%223%22/%3E%3Cpath d=%22M0 14H16V26H0Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/420px 420px repeat;mask:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 360 360%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cg transform=%22translate%2860 60%29 rotate%2810%29%22%3E%3Ccircle r=%2217%22/%3E%3Ccircle r=%226%22/%3E%3Ccircle r=%2222%22 stroke-width=%225%22 stroke-dasharray=%226.9 6.9%22/%3E%3C/g%3E%3Cg transform=%22translate%28190 38%29 rotate%28-4%29%22%3E%3Cpath d=%22M-40 0H-22L-17 -8L-9 8L-1 -8L7 8L15 -8L20 0H40%22/%3E%3C/g%3E%3Cg transform=%22translate%28300 70%29%22%3E%3Ccircle r=%2218%22/%3E%3Cpath d=%22M-7 6V-6L0 2L7 -6V6M18 0H32M-18 0H-32%22/%3E%3C/g%3E%3Cg transform=%22translate%28125 115%29 rotate%2815%29%22%3E%3Cpath d=%22M12 0L6 10.4L-6 10.4L-12 0L-6 -10.4L6 -10.4Z%22/%3E%3Ccircle r=%225%22/%3E%3C/g%3E%3Cg transform=%22translate%28240 120%29%22%3E%3Cpath d=%22M0 -14V0M-12 0H12M-8 6H8M-4 12H4%22/%3E%3C/g%3E%3Cg transform=%22translate%2855 205%29%22%3E%3Cpath d=%22M-14 20H14M0 20V4%22/%3E%3Ccircle r=%224%22 cy=%220%22/%3E%3Cpath d=%22M0 0L28 -22%22/%3E%3Ccircle cx=%2228%22 cy=%22-22%22 r=%224%22/%3E%3Cpath d=%22M28 -22L52 -4M52 -4L60 -8M52 -4L60 2%22/%3E%3C/g%3E%3Cg transform=%22translate%28180 185%29 rotate%28-8%29%22%3E%3Cpath d=%22M-30 0H-5M-5 -12V12M5 -12V12M5 0H30%22/%3E%3C/g%3E%3Cg transform=%22translate%28292 195%29%22%3E%3Cpath d=%22M-18 -22L22 0L-18 22ZM-34 -10H-18M-34 10H-18M22 0H38M-14 -10H-8M-11 -13V-7M-14 10H-8%22/%3E%3C/g%3E%3Cg transform=%22translate%2850 300%29%22%3E%3Cpath d=%22M-18 -6A26 26 0 0 1 18 -6M-11 1A15 15 0 0 1 11 1M-5 8A6 6 0 0 1 5 8%22/%3E%3Ccircle cy=%2215%22 r=%221.8%22 fill=%22black%22/%3E%3C/g%3E%3Cg transform=%22translate%28170 300%29 rotate%284%29%22%3E%3Cpath d=%22M-36 0H-24a6 6 0 0 1 12 0a6 6 0 0 1 12 0a6 6 0 0 1 12 0a6 6 0 0 1 12 0H36%22/%3E%3C/g%3E%3Cg transform=%22translate%28300 305%29%22%3E%3Cpath d=%22M-30 10H-10L5 -5H30%22/%3E%3Ccircle cx=%22-30%22 cy=%2210%22 r=%223%22/%3E%3Ccircle cx=%2230%22 cy=%22-5%22 r=%223%22/%3E%3Cpath d=%22M0 14H16V26H0Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/420px 420px repeat}
+a{color:var(--blue)}
+a:focus-visible,button:focus-visible,.proj:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 1.5rem}
+nav{position:sticky;top:0;z-index:5;background:var(--nav-bg);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:1.5rem;align-items:center;padding-top:.8rem;padding-bottom:.8rem;flex-wrap:wrap}
+nav strong{font-family:var(--display);margin-right:auto}
+nav a{text-decoration:none;color:var(--ink);font-size:.95rem}
+nav a:hover{color:var(--blue)}
+.theme{font:inherit;font-size:.9rem;color:var(--ink);background:transparent;border:1px solid var(--ink);border-radius:99px;padding:.2rem .85rem;cursor:pointer}
+.theme:hover{border-color:var(--blue);color:var(--blue)}
+h1,h2,h3{font-family:var(--display);line-height:1.15}
+h1{font-size:clamp(2.6rem,7vw,4.6rem);letter-spacing:-.02em}
+h2{font-size:1.9rem;margin-bottom:2rem}
+h3{font-size:1.2rem}
 
-  <div class="hero-copy">
+/* Hero */
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:3rem;align-items:center;min-height:82vh;padding:3rem 0}
+.photo{width:100%;max-width:400px;aspect-ratio:1;object-fit:cover;border-radius:50%;border:2px solid var(--ink);justify-self:end}
+.hero .role{font-family:var(--display);font-size:1.3rem;color:var(--blue);margin:.6rem 0 1.2rem}
+.hero p{max-width:34rem;color:var(--muted)}
+.hero p strong{color:var(--ink);font-weight:500}
+.actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem}
+.btn{display:inline-block;padding:.7rem 1.3rem;border-radius:6px;text-decoration:none;font-weight:500;border:2px solid var(--blue);transition:background .2s,color .2s}
+.btn.main{background:var(--blue);color:var(--btn-text)}
+.btn.main:hover{background:var(--blue-hover);border-color:var(--blue-hover)}
+.btn.alt{color:var(--blue)}
+.btn.alt:hover{background:var(--blue);color:var(--btn-text)}
 
-    <div class="hero-title">
+/* Sections */
+section{padding:3.5rem 0;border-top:1px solid var(--ink)}
 
-      <h1>Sebastian Aldave</h1>
+/* Project previews */
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+.proj{display:block;color:inherit;text-decoration:none}
+.thumb{position:relative;aspect-ratio:16/10;overflow:hidden;border:1px solid var(--ink);border-radius:4px;
+  background:linear-gradient(135deg,#2447d6 0%,#0e8a7d 100%)}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.thumb .over{position:absolute;inset:0;background:rgba(10,18,28,.86);color:#eef1f4;padding:1.1rem 1.2rem;
+  display:flex;flex-direction:column;justify-content:center;gap:.8rem;opacity:0;transition:opacity .25s;overflow:auto}
+.proj:hover .over,.proj:focus .over,.proj:focus-within .over{opacity:1}
+.over p{font-size:.95rem;line-height:1.55}
+.over ul{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none}
+.over li{font-size:.78rem;border:1px solid #6fd6c9;color:#6fd6c9;padding:.05rem .55rem;border-radius:99px}
+.cap{padding-top:.7rem}
+.proj:hover .cap h3,.proj:focus-visible .cap h3{color:var(--blue);text-decoration:underline}
+@media (hover:none){.thumb .over{opacity:1;background:rgba(10,18,28,.8)}}
 
-      <img
-        class="photo"
-        src="./img/foto_sorbonne.png"
-        alt="Sebastian Aldave"
-      >
+/* About */
+.about{max-width:40rem}
+footer{border-top:1px solid var(--ink);padding:2rem 0 3rem;color:var(--muted);font-size:.9rem}
 
-    </div>
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;min-height:auto;gap:2rem}
+  .photo{order:-1;justify-self:center;max-width:240px}
+  .projects{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
 
-    <p class="role">
-      Engineer in autonomous robotics and intelligent systems
-    </p>
-
-    <p>
-      Engineering student at Mines Paris–PSL and in the AI2D Master's
-      at Sorbonne Université. I design systems that perceive, decide
-      and act, from the mechanics and electronics to the algorithm.
-      <strong>
-        I am looking for a 5-month final-year internship starting
-        late March 2027
-      </strong>,
-      in applied R&amp;D.
-    </p>
-
-    <div class="actions">
-
-      <a class="btn main" href="#projects">
-        See my projects
-      </a>
-
-      <a class="btn alt" href="#contact">
-        Get in touch
-      </a>
-
-    </div>
-
+<nav>
+  <div class="wrap">
+    <strong>Sebastian Aldave</strong>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <button class="theme" id="theme" type="button"></button>
   </div>
+</nav>
 
-</header>
+<main class="wrap">
+
+  <header class="hero">
+    <div class="hero-copy">
+      <h1>Sebastian Aldave</h1>
+      <p class="role">Engineer in autonomous robotics and intelligent systems</p>
+      <p>Engineering student at Mines Paris–PSL and in the AI2D Master's at Sorbonne Université. I design systems that perceive, decide and act, from the mechanics and electronics to the algorithm. <strong>I am looking for a 5-month final-year internship starting late March 2027</strong>, in applied R&amp;D.</p>
+      <div class="actions">
+        <a class="btn main" href="#projects">See my projects</a>
+        <a class="btn alt" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <img class="photo" src="./img/foto_sorbonne.png" alt="Sebastian Aldave" onerror="this.remove()">
+  </header>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+
+      <a class="proj" href="https://github.com/YOUR-GITHUB/schneider-pcba-robotic-cell" target="_blank" rel="noopener">
+        <div class="thumb">
+          <img src="img/schneider.jpg" alt="Robotic PCBA test cell" onerror="this.remove()">
+          <div class="over">
+            <p>Integration of a robotic cell (Lexium cobot, Keyence vision) to insert PCBAs into test benches, orchestrated with EcoStruxure Automation Expert and a digital twin. Cycle time ≤ 16 s, estimated gain of 9,000 h/year, ROI of 2.4 years.</p>
+            <ul><li>Cobot</li><li>Machine vision</li><li>Digital twin</li><li>CAD</li></ul>
+          </div>
+        </div>
+        <div class="cap"><h3>Robotic cell for PCBA testing</h3></div>
+      </a>
+
+      <a class="proj" href="https://github.com/YOUR-GITHUB/smart-contact-lens-biosensing" target="_blank" rel="noopener">
+        <div class="thumb">
+          <img src="img/lens.jpg" alt="Embedded platform of the smart contact lens" onerror="this.remove()">
+          <div class="over">
+            <p>Embedded platform for a contact lens that senses tear biomarkers: component selection, electrochemical signal acquisition, NFC communication, thin-film mask design, and Python processing of experimental data.</p>
+            <ul><li>Embedded systems</li><li>NFC</li><li>Python</li><li>Thin-film</li></ul>
+          </div>
+        </div>
+        <div class="cap"><h3>Contact lens for tear biosensing</h3></div>
+      </a>
+
+      <a class="proj" href="https://github.com/YOUR-GITHUB/sensorless-induction-motor-control" target="_blank" rel="noopener">
+        <div class="thumb">
+          <img src="img/motor.png" alt="Simulation results of the sensorless motor control" onerror="this.remove()">
+          <div class="over">
+            <p>Nonlinear flux-speed control laws and a cascaded Kalman filter observer to estimate speed without a sensor. Stability analysis and simulation under load disturbances and parameter uncertainty.</p>
+            <ul><li>Nonlinear control</li><li>Kalman filter</li><li>MATLAB/Simulink</li></ul>
+          </div>
+        </div>
+        <div class="cap"><h3>Robust sensorless induction motor control</h3></div>
+      </a>
+
+      <a class="proj" href="https://github.com/YOUR-GITHUB/mobile-manipulator-waste-collection" target="_blank" rel="noopener">
+        <div class="thumb">
+          <img src="img/arm.jpg" alt="Mobile manipulator arm" onerror="this.remove()">
+          <div class="over">
+            <p>2-DOF arm mounted on a mobile platform to collect waste. PID controller in C++ coupled with forward and inverse kinematics in MATLAB, validated under external disturbances.</p>
+            <ul><li>Mobile robotics</li><li>PID</li><li>C++</li><li>Kinematics</li></ul>
+          </div>
+        </div>
+        <div class="cap"><h3>Mobile manipulator for waste collection</h3></div>
+      </a>
+
+      <a class="proj" href="https://github.com/YOUR-GITHUB/gesture-speech-glove" target="_blank" rel="noopener">
+        <div class="thumb">
+          <img src="img/glove.jpg" alt="Gesture-to-speech glove" onerror="this.remove()">
+          <div class="over">
+            <p>Glove with inertial and flex sensors, a TensorFlow neural network for real-time gesture recognition, haptic and visual feedback, and an IoT link to a web interface for transcription and speech synthesis.</p>
+            <ul><li>TensorFlow</li><li>IoT</li><li>Sensors</li><li>ESP32</li></ul>
+          </div>
+        </div>
+        <div class="cap"><h3>Gesture-to-speech communication glove</h3></div>
+      </a>
+
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Let's talk about your project</h2>
+    <p class="about">I am looking for a multidisciplinary team working on robotics, AI and physical systems, where I can start from a real need, then design, integrate and validate a solution on a real system.</p>
+    <div class="actions">
+      <a class="btn main" href="mailto:sebastian.aldavet@gmail.com">Send an email</a>
+      <a class="btn alt" href="https://www.linkedin.com/in/YOUR-LINKEDIN">LinkedIn</a>
+      <a class="btn alt" href="https://github.com/YOUR-GITHUB">GitHub</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Sebastian Aldave</div>
+</footer>
+
+<script>
+(function(){
+  var btn=document.getElementById('theme'),mq=window.matchMedia('(prefers-color-scheme: dark)');
+  function isDark(){var a=document.documentElement.getAttribute('data-theme');return a?a==='dark':mq.matches}
+  function label(){btn.textContent=isDark()?'Light mode':'Dark mode';btn.setAttribute('aria-label',isDark()?'Switch to light mode':'Switch to dark mode')}
+  btn.addEventListener('click',function(){
+    var next=isDark()?'light':'dark';
+    document.documentElement.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next)}catch(e){}
+    label()});
+  mq.addEventListener('change',label);
+  label();
+})();
+</script>
+</body>
+</html>
