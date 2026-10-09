@@ -101,3 +101,5 @@ footer{border-top:1px solid var(--ink);padding:2rem 0 3rem;color:var(--muted);fo
 .gallery img,.detail video{width:100%;display:block;border:1px solid var(--ink);border-radius:4px;background:var(--surface)}
 .detail video{max-width:780px}
 .detail section p{max-width:40rem;color:var(--muted);margin-bottom:1rem}
+.pdf{width:100%;height:80vh;min-height:480px;display:block;margin-bottom:1.2rem;border:1px solid var(--ink);border-radius:4px;background:var(--surface)}
+@media (hover:none) and (pointer:coarse){.pdf{display:none}}
