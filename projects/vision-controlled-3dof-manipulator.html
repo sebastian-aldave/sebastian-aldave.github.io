@@ -21,46 +21,42 @@
   </div>
 </nav>
 
-<main class="wrap detail">
+<main class="wrap detail" data-slug="vision-controlled-3dof-manipulator">
   <a class="back" href="../index.html#projects">← Back to projects</a>
 
   <header class="phead">
     <h1>3-DOF manipulator controlled by computer vision</h1>
-    <p class="lead">A 3-DOF robotic manipulator guided by computer vision: a camera perceives the target and the arm is controlled from its position.</p>
     <ul class="ptags"><li>Computer vision</li><li>OpenCV</li><li>Kinematics</li><li>Control</li></ul>
   </header>
 
-  <section>
-    <h2>What I did</h2>
-    <ul class="points">
-      <li>Detected the target with a camera using computer vision.</li>
-      <li>Computed the joint motion of the 3-DOF arm with inverse kinematics.</li>
-    </ul>
-  </section>
+  <div class="cols" id="cols">
+    <section class="desc">
+      <h2>Project description</h2>
+      <p class="lead">A 3-DOF robotic manipulator guided by computer vision: a camera perceives the target and the arm is controlled from its position.</p>
+      <ul class="points">
+        <li>Detected the target with a camera using computer vision.</li>
+        <li>Computed the joint motion of the 3-DOF arm with inverse kinematics.</li>
+      </ul>
+    </section>
 
-  <section data-optional>
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <img src="../img/vision-controlled-3dof-manipulator-1.jpg" alt="3-DOF manipulator controlled by computer vision, image 1" onerror="this.remove()">
-      <img src="../img/vision-controlled-3dof-manipulator-2.jpg" alt="3-DOF manipulator controlled by computer vision, image 2" onerror="this.remove()">
-      <img src="../img/vision-controlled-3dof-manipulator-3.jpg" alt="3-DOF manipulator controlled by computer vision, image 3" onerror="this.remove()">
-    </div>
-  </section>
-
-  <section data-optional>
-    <h2>Video</h2>
-    <video controls preload="metadata" src="../video/vision-controlled-3dof-manipulator.mp4" onerror="this.remove()"></video>
-  </section>
+    <section class="media" id="media" hidden>
+      <h2>Media</h2>
+      <h3 class="sub" id="photos-h" hidden>Photos</h3>
+      <div id="photos"></div>
+      <h3 class="sub" id="videos-h" hidden>Videos</h3>
+      <!-- To add YouTube videos, write their IDs here separated by commas: data-youtube="ID1,ID2" -->
+      <div id="videos" data-youtube=""></div>
+    </section>
+  </div>
 
   <section>
     <h2>Article</h2>
-    <p>Read the full write-up of the project.</p>
-    <a class="btn main" data-check href="../docs/vision-controlled-3dof-manipulator.pdf">Read the article (PDF)</a>
+    <iframe class="pdf" width="100%" height="800" src="../docs/vision-controlled-3dof-manipulator.pdf#view=FitH" title="Article: 3-DOF manipulator controlled by computer vision"></iframe>
+    <a class="btn alt" data-check href="../docs/vision-controlled-3dof-manipulator.pdf" target="_blank" rel="noopener">Open the article in a new tab</a>
   </section>
 
   <section>
-    <h2>Code</h2>
-    <a class="btn alt" href="https://github.com/YOUR-GITHUB/vision-controlled-3dof-manipulator" target="_blank" rel="noopener">View on GitHub</a>
+    <a class="btn main" href="https://github.com/sebastian-aldave/vision-controlled-3dof-manipulator" target="_blank" rel="noopener">View the repository on GitHub</a>
   </section>
 </main>
 
