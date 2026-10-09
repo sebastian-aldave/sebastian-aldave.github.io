@@ -1,74 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Robust sensorless induction motor control | Sebastian Aldave</title>
-<meta name="description" content="Control of an induction motor without a speed sensor, designed to stay stable under load disturbances and uncertain parameters.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
-<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
-<link rel="stylesheet" href="page.css">
-</head>
-<body>
-<nav>
-  <div class="wrap">
-    <a class="brand" href="../index.html">Sebastian Aldave</a>
-    <a href="../index.html#projects">All projects</a>
-    <a href="../index.html#contact">Contact</a>
-    <button class="theme" id="theme" type="button"></button>
-  </div>
-</nav>
+(function(){
+  /* Theme toggle */
+  var btn=document.getElementById('theme'),mq=window.matchMedia('(prefers-color-scheme: dark)');
+  function isDark(){var a=document.documentElement.getAttribute('data-theme');return a?a==='dark':mq.matches}
+  function label(){btn.textContent=isDark()?'Light mode':'Dark mode';btn.setAttribute('aria-label',isDark()?'Switch to light mode':'Switch to dark mode')}
+  btn.addEventListener('click',function(){
+    var next=isDark()?'light':'dark';
+    document.documentElement.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next)}catch(e){}
+    label()});
+  mq.addEventListener('change',label);
+  label();
 
-<main class="wrap detail">
-  <a class="back" href="../index.html#projects">← Back to projects</a>
+  /* Hide the article section if the PDF has not been uploaded yet */
+  if(location.protocol.indexOf('http')===0){
+    document.querySelectorAll('a[data-check]').forEach(function(a){
+      function hide(){a.closest('section').hidden=true}
+      fetch(a.href,{method:'HEAD'}).then(function(r){if(!r.ok)hide()}).catch(hide);
+    });
+  }
 
-  <header class="phead">
-    <h1>Robust sensorless induction motor control</h1>
-    <p class="pmeta">Research project · Mines Paris–PSL, Centre d'Automatique et Systèmes · Dec 2024 – Feb 2025</p>
-    <p class="lead">Control of an induction motor without a speed sensor, designed to stay stable under load disturbances and uncertain parameters.</p>
-    <ul class="ptags"><li>Nonlinear control</li><li>Kalman filter</li><li>MATLAB/Simulink</li></ul>
-  </header>
+  /* Media: finds files by name, then builds the two carousels */
+  var main=document.querySelector('[data-slug]');
+  var slug=main.getAttribute('data-slug'),title=document.querySelector('h1').textContent;
+  var cols=document.getElementById('cols'),media=document.getElementById('media');
+  var photosBox=document.getElementById('photos'),videosBox=document.getElementById('videos');
 
-  <section>
-    <h2>What I did</h2>
-    <ul class="points">
-      <li>Synthesized nonlinear control laws for flux-speed control of an induction motor.</li>
-      <li>Designed an observer based on cascaded Kalman filters to estimate speed without a sensor.</li>
-      <li>Analyzed stability and validated the design in simulation under load disturbances and parametric uncertainties.</li>
-    </ul>
-  </section>
+  function loadImg(src){return new Promise(function(res){var i=new Image();i.onload=function(){res(src)};i.onerror=function(){res(null)};i.src=src})}
+  function loadVid(src){return new Promise(function(res){var v=document.createElement('video');v.preload='metadata';v.onloadedmetadata=function(){res(src)};v.onerror=function(){res(null)};v.src=src})}
 
-  <section data-optional>
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <img src="../img/sensorless-induction-motor-control-1.jpg" alt="Robust sensorless induction motor control, image 1" onerror="this.remove()">
-      <img src="../img/sensorless-induction-motor-control-2.jpg" alt="Robust sensorless induction motor control, image 2" onerror="this.remove()">
-      <img src="../img/sensorless-induction-motor-control-3.jpg" alt="Robust sensorless induction motor control, image 3" onerror="this.remove()">
-    </div>
-  </section>
+  async function findImages(){
+    var out=[],exts=['jpg','jpeg','png','webp'];
+    for(var n=1;n<=12;n++){
+      var f=null;
+      for(var k=0;k<exts.length&&!f;k++)f=await loadImg('../img/'+slug+'-'+n+'.'+exts[k]);
+      if(!f)break;
+      out.push(f);
+    }
+    return out;
+  }
+  async function findVideos(){
+    var out=[],f=await loadVid('../video/'+slug+'.mp4');
+    if(f)out.push(f);
+    for(var n=1;n<=6;n++){f=await loadVid('../video/'+slug+'-'+n+'.mp4');if(!f)break;out.push(f)}
+    return out;
+  }
 
-  <section data-optional>
-    <h2>Video</h2>
-    <video controls preload="metadata" src="../video/sensorless-induction-motor-control.mp4" onerror="this.remove()"></video>
-  </section>
+  function carousel(host,items,cls,thumbSrcs){
+    var n=items.length,i=0;
+    var box=document.createElement('div');box.className='carousel '+cls+(n<2?' single':'');box.tabIndex=0;
+    var frame=document.createElement('div');frame.className='frame';
+    var stage=document.createElement('div');stage.className='stage';
+    var prev=document.createElement('button'),next=document.createElement('button');
+    prev.className='cnav prev';prev.type='button';prev.textContent='‹';prev.setAttribute('aria-label','Previous');
+    next.className='cnav next';next.type='button';next.textContent='›';next.setAttribute('aria-label','Next');
+    frame.appendChild(stage);frame.appendChild(prev);frame.appendChild(next);
+    var bar=document.createElement('div');bar.className='cbar';
+    var count=document.createElement('span');count.className='count';bar.appendChild(count);
+    var thumbs=[];
+    if(thumbSrcs){
+      var tb=document.createElement('div');tb.className='thumbs';
+      thumbSrcs.forEach(function(src,k){
+        var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Show image '+(k+1));
+        var im=document.createElement('img');im.src=src;im.alt='';b.appendChild(im);
+        b.addEventListener('click',function(){show(k)});
+        tb.appendChild(b);thumbs.push(b);
+      });
+      bar.appendChild(tb);
+    }
+    box.appendChild(frame);box.appendChild(bar);host.appendChild(box);
+    function show(k){
+      var old=stage.querySelector('video');if(old)old.pause();
+      i=(k+n)%n;stage.innerHTML='';stage.appendChild(items[i]);
+      count.textContent=(i+1)+' / '+n;
+      thumbs.forEach(function(b,j){if(j===i)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')});
+    }
+    prev.addEventListener('click',function(){show(i-1)});
+    next.addEventListener('click',function(){show(i+1)});
+    box.addEventListener('keydown',function(e){
+      if(e.key==='ArrowLeft'){show(i-1)}else if(e.key==='ArrowRight'){show(i+1)}});
+    var x0=null;
+    box.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+    box.addEventListener('touchend',function(e){
+      if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;x0=null;
+      if(Math.abs(dx)>40)show(dx<0?i+1:i-1)},{passive:true});
+    show(0);
+  }
 
-  <section>
-    <h2>Article</h2>
-    <iframe class="pdf" src="../docs/sensorless-induction-motor-control.pdf#view=FitH" title="Article: sensorless-induction-motor-control"></iframe>
-    <a class="btn alt" data-check href="../docs/sensorless-induction-motor-control.pdf" target="_blank" rel="noopener">Open the article in a new tab</a>
-  </section>
-
-  <section>
-    <h2>Code</h2>
-    <a class="btn alt" href="https://github.com/sebastian-aldave/sensorless-induction-motor-control" target="_blank" rel="noopener">View on GitHub</a>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">© 2026 Sebastian Aldave</div>
-</footer>
-<script src="page.js"></script>
-</body>
-</html>
+  Promise.all([findImages(),findVideos()]).then(function(r){
+    var imgs=r[0],vids=r[1];
+    var yt=(videosBox.getAttribute('data-youtube')||'').split(',').map(function(s){return s.trim()}).filter(Boolean);
+    if(!imgs.length&&!vids.length&&!yt.length){cols.classList.add('solo');return}
+    media.hidden=false;
+    if(imgs.length){
+      document.getElementById('photos-h').hidden=false;
+      var els=imgs.map(function(src,k){var im=new Image();im.src=src;im.alt=title+', image '+(k+1);return im});
+      carousel(photosBox,els,'photos',imgs);
+    }
+    var vEls=vids.map(function(src){var v=document.createElement('video');v.controls=true;v.preload='metadata';v.src=src;return v});
+    yt.forEach(function(id){
+      var f=document.createElement('iframe');
+      f.src='https://www.youtube.com/embed/'+id;f.title=title+' (video)';f.allowFullscreen=true;f.loading='lazy';
+      f.allow='accelerometer; encrypted-media; gyroscope; picture-in-picture';
+      vEls.push(f);
+    });
+    if(vEls.length){
+      document.getElementById('videos-h').hidden=false;
+      carousel(videosBox,vEls,'vids',null);
+    }
+  });
+})();
